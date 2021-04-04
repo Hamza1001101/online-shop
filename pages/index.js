@@ -1,15 +1,17 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import products from "../products.json";
+import { initiatePayment } from '../lib/payment'
 
 export default function Home() {
+   
   return (
     <div className={styles.container}>
+     
       <Head>
         <title>Space Jelly Shop</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>Space Jelly Shop</h1>
 
@@ -27,12 +29,25 @@ export default function Home() {
                   <h4>{price} SEK </h4>
                   <p>{description}</p>
                 </a>
+                <p>
+                  <button className={styles.button}
+                    onClick={() => {
+                      initiatePayment({
+                        lineItems: [
+                          {
+                            price: id,
+                            
+                            quantity: 1
+                      }
+                    ]
+                  })}}
+                  >Buy Now</button>
+                </p>
               </li>
             );
           })}
         </ul>
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
