@@ -14,7 +14,7 @@ export default function Home() {
         <h1 className={styles.title}>Space Jelly Shop</h1>
 
         <p className={styles.description}>
-          Welcome to the best Jellyfish swag on the Web
+          Welcome to the best Jellyfish swag on the Universe
         </p>
 
         <ul className={styles.grid}>
