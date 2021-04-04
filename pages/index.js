@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-import { initiateCheckout } from "../lib/payment";
+import { initiateCheckout } from "../lib/payments";
 
 import products from "../products.json";
 
@@ -94,7 +94,7 @@ export default function Home() {
         <p className={styles.description}>
           <strong>Items:</strong> {quantity}
           <br />
-          <strong>Total:</strong> ${subtotal}
+          <strong>Total:</strong> SEK {subtotal}
           <br />
           <button className={styles.button} onClick={checkout}>
             Check Out
@@ -109,7 +109,7 @@ export default function Home() {
                 <a href="#">
                   <img src={image} alt={title} />
                   <h3>{title}</h3>
-                  
+
                   <h4>{price} SEK</h4>
                   <p>{description}</p>
                   <p>
@@ -117,7 +117,7 @@ export default function Home() {
                       className={styles.button}
                       onClick={() => addToCart({ id })}
                     >
-                      Buy
+                      Add Item
                     </button>
                   </p>
                 </a>
