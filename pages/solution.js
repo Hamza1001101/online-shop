@@ -2,9 +2,9 @@ import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-import { initiateCheckout } from "../lib/payment";
+import { initiateCheckout } from "../lib/payments.js";
 
-import products from "../products.json";
+import products from "../../shared/products.json";
 
 const defaultCart = {
   products: {},
@@ -12,6 +12,7 @@ const defaultCart = {
 
 export default function Home() {
   /**
+   * @lesson-09-solution Exercise 2
    * Using React's useState hook, we can store the current "state" of
    * our customer's shopping cart.
    */
@@ -37,12 +38,6 @@ export default function Home() {
     return accumulator + quantity;
   }, 0);
 
-  /**
-   * We can create an addToCart function that given the product ID, adds that item
-   * to our local cart state along with incrementing the quantity of that item by
-   * 1 if it exists or setting it as a new product in our cart if it didn't exist.
-   */
-
   function addToCart({ id }) {
     updateCart((prev) => {
       let cart = { ...prev };
@@ -59,12 +54,6 @@ export default function Home() {
       return cart;
     });
   }
-
-  /**
-   * The iniateCheckout function can still be used to trigger the checkout
-   * sequence, but now, we're dynamically passing an array of products
-   * that includes each product ID along with how many of that item.
-   */
 
   function checkout() {
     initiateCheckout({
@@ -109,8 +98,7 @@ export default function Home() {
                 <a href="#">
                   <img src={image} alt={title} />
                   <h3>{title}</h3>
-                  
-                  <h4>{price} SEK</h4>
+                  <p>${price}</p>
                   <p>{description}</p>
                   <p>
                     <button
